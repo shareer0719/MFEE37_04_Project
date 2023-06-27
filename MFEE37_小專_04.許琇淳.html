@@ -1,0 +1,2367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 以下是head -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEMPO師資媒合平台</title>
+    <!-- 本地端檔案 引入 bootstrap.css -->
+    <link rel="stylesheet" href="./bootstrap_css/bootstrap.css">
+    <!-- CDN 引入 Bootstrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!-- CDN 引入 Google Fonts - Noto Sans TC -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- CDN 引入 Google Fonts - Baloo 2 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- 本地端檔案 引入 style.css -->
+    <link rel="stylesheet" href="./style_css/style.css">
+    <!-- 本地端檔案 引入 animate.css -->
+    <link rel="stylesheet" href="./animation_css/animate.css">
+    <!-- 本地端檔案 引入 loading.css -->
+    <link rel="stylesheet" href="./animation_css/loading.css">
+    <!-- 本地端檔案 引入 index.js -->
+    <script src="./js/index.js"></script>
+    <!-- CDN 引入 Font Awesome Icon javascript -->
+    <script src="https://kit.fontawesome.com/59ee76c344.js" crossorigin="anonymous"></script>
+</head>
+
+<!-- 以下是body -->
+
+<body>
+    <!-- navbar 導覽列 -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-green-tint py-0">
+        <div class="container-fluid px-4 py-2">
+            <!-- 品牌 logo -->
+            <a class="navbar-brand" href="#">
+                <img id="brandLogo" src="./img/TempoLogo.svg" alt="logo">
+            </a>
+            <!-- 折疊收合 navbar 按鈕 -->
+            <button class="navbar-toggler border-green-primary ms-auto" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- 要摺疊的 navbar 內容 -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item me-3">
+                        <!-- 職缺搜尋 -->
+                        <a class="nav-link pb-1 body-text-16 fw-bold" aria-current="page" href="#">職缺搜尋</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <!-- 教育機構 -->
+                        <a class="nav-link pb-1 body-text-16 fw-bold" href="#">教育機構</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <!-- 服務方案 -->
+                        <a class="nav-link pb-1 body-text-16 fw-bold" href="#">服務方案</a>
+                    </li>
+                    <li class="nav-item me-3">
+                        <!-- 關於TEMPO -->
+                        <a class="nav-link pb-1 body-text-16 fw-bold" href="#">關於TEMPO</a>
+                    </li>
+                </ul>
+                <!-- 註冊/登入按鈕 -->
+                <button type="button" class="btn btn-outline-orange-analogous rounded-pill" data-bs-toggle="modal"
+                    href="#loginModalToggle" role="button">註冊｜登入</button>
+            </div>
+        </div>
+    </nav>
+    <!-- 註冊/登入 modal 互動視窗 -->
+    <!-- 登入 modal -->
+    <div class="modal fade" id="loginModalToggle" aria-hidden="true" aria-labelledby="loginModalToggleLabel"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <!-- 關閉按鈕 -->
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- 內容 -->
+                    <div class="container">
+                        <div class="d-flex">
+                            <h2 class="fw-bold" id="loginModalToggleLabel">登入</h2>
+                        </div>
+                        <form>
+                            <div class="mb-3">
+                                <label for="InputEmail1" class="form-label">Email帳號</label>
+                                <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp"
+                                    placeholder="請輸入 Email 帳號" required>
+                                <!-- <div id="emailHelp" class="invalid-feedback">Email帳號不得空白</div> -->
+                            </div>
+                            <div class="mb-3">
+                                <label for="InputPassword1" class="form-label">密碼</label>
+                                <input type="password" class="form-control" id="InputPassword1"
+                                    aria-describedby="passwordHelp" placeholder="請輸入密碼" required>
+                                <!-- <div id="passwordHelp" class="invalid-feedback">密碼不得空白</div> -->
+                                <a href="#" class="forgetpw text-green-analogous" data-bs-target="#forgetPwModalToggle"
+                                    data-bs-toggle="modal">
+                                    <small>忘記密碼？</small>
+                                </a>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <small>
+                                    還沒有帳號？點此
+                                    <a href="#" class="btn btn-outline-orange-analogous rounded-pill"
+                                        data-bs-target="#registerModalToggle" data-bs-toggle="modal">
+                                        註冊
+                                    </a>
+                                </small>
+                                <button type="submit" class="btn btn-orange-analogous rounded-pill">登入</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 註冊 modal -->
+    <div class="modal fade" id="registerModalToggle" aria-hidden="true" aria-labelledby="registerModalToggleLabel"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <!-- 關閉按鈕 -->
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- 內容 -->
+                    <div class="container">
+                        <div class="d-flex">
+                            <h2 class="fw-bold" id="registerModalToggleLabel">註冊</h2>
+                        </div>
+                        <form>
+                            <div class="mb-3">
+                                <label for="InputEmail1" class="form-label">Email帳號</label>
+                                <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp"
+                                    placeholder="建議使用 Gmail 註冊" required>
+                                <!-- <div id="emailHelp" class="invalid-feedback">Email帳號不得空白</div> -->
+                            </div>
+                            <div class="mb-3">
+                                <label for="InputPassword1" class="form-label">密碼</label>
+                                <input type="password" class="form-control" id="InputPassword1"
+                                    aria-describedby="passwordHelp" placeholder="長度至少 8 個字元，需有英文 + 數字" required>
+                                <!-- <div id="passwordHelp" class="invalid-feedback">密碼不得空白</div> -->
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <small>
+                                    已經有帳號？點此
+                                    <a href="#" class="btn btn-outline-orange-analogous rounded-pill"
+                                        data-bs-target="#loginModalToggle" data-bs-toggle="modal">
+                                        登入
+                                    </a>
+                                </small>
+                                <button type="submit" class="btn btn-orange-analogous rounded-pill">註冊</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 忘記密碼 -->
+    <div class="modal fade" id="forgetPwModalToggle" aria-hidden="true" aria-labelledby="forgetPwModalToggleLabel"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <!-- 關閉按鈕 -->
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <!-- 內容 -->
+                    <div class="container">
+                        <div class="mb-3">
+                            <h2 class="fw-bold" id="forgetPwModalToggleLabel">重設密碼</h2>
+                            <p>請輸入註冊時用的 Email，我們將寄送重設密碼連結至此 Email</p>
+                        </div>
+                        <form>
+                            <div class="mb-3">
+                                <label for="InputEmail1" class="form-label">Email帳號</label>
+                                <input type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp">
+                                <div id="emailHelp" class="invalid-feedback">Email帳號不得空白</div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <a href="#" class="btn btn-outline-orange-analogous rounded-pill fs-6"
+                                    data-bs-target="#loginModalToggle" data-bs-toggle="modal">
+                                    返回登入
+                                </a>
+                                <button type="submit" class="btn btn-orange-analogous rounded-pill">確認送出</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- header -->
+    <header>
+        <!-- header-img-carousel 圖片輪播-->
+        <div id="headerImgCarousel" class="carousel slide" data-bs-ride="carousel">
+            <!-- header 滿版輪播圖片 -->
+            <div class="carousel-inner mt-5">
+                <div class="carousel-item vh-100 bg-cover active"
+                    style="background-image: url(./img/teacher-smile-M.jpg);">
+                </div>
+                <div class="carousel-item vh-100 bg-cover" style="background-image: url(./img/great-deal-M.jpg);">
+                </div>
+                <div class="carousel-item vh-100 bg-cover"
+                    style="background-image: url(./img/teacher-and-child-M.jpg);">
+                </div>
+            </div>
+            <!-- header 左右控制項按鈕 -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#headerImgCarousel"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#headerImgCarousel"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            <!-- header 下方切換導覽列 -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#headerImgCarousel" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#headerImgCarousel" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#headerImgCarousel" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+        </div>
+        <!-- header-hero-->
+        <div id="header-hero" class="d-flex">
+            <!-- 標語文字 -->
+            <div class="d-none d-md-flex align-items-center text-green-tint display-5 fw-normal">
+                補教機構<span class="d-text-56 text-green-primary">最佳</span>
+                的<span class="d-text-56 text-green-primary">師資媒合</span>
+                平台
+            </div>
+            <!-- 職缺搜尋&刊登職缺 按鈕 -->
+            <div class="nav-bar navbar-expand-md mt-3">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item me-5 mb-4">
+                        <button type="button" class="btn btn-outline-light rounded-pill px-5">職缺搜尋</button>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-outline-light rounded-pill px-5">刊登職缺</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- section-1 熱門職缺 -->
+    <section class="bg-green-tint py-5">
+        <div class="container">
+            <!-- section icon 標題 -->
+            <div class="d-flex justify-content-between text-nowrap mb-3">
+                <!-- icon 熱門職缺 -->
+                <div class="d-flex align-items-center">
+                    <h4 class="fw-bold">
+                        <span>
+                            <img class="me-2" src="./img/section-icon/person-fill-add.svg" alt="熱門職缺">
+                        </span>
+                        熱門職缺
+                    </h4>
+                </div>
+                <!-- 更多熱門職缺 -->
+                <div class="d-flex align-items-center">
+                    <a class="text-decoration-none" href="#">
+                        <h6 class="look-more fw-bold text-orange-primary">
+                            更多熱門職缺
+                            <span>
+                                <img src="./img/arrow-icon/Rectangle 6.svg" alt="更多熱門職缺">
+                            </span>
+                        </h6>
+                    </a>
+                </div>
+            </div>
+            <div class="border-bottom border-2"></div><br>
+        </div>
+        <!-- 連動輪播卡片的tag標籤 -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#sectionJobCardCarousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                </div>
+                <div class="col-md-10">
+                    <div class="wrapper d-flex justify-content-center">
+                        <div class="carousel-inner">
+                            <div class="carousel-item pb-3">
+                                <a href="#" class="h-100">
+                                    語言
+                                </a>
+                            </div>
+                            <div class="carousel-item pb-3">
+                                <a href="#" class="h-100">
+                                    兒童程式
+                                </a>
+                            </div>
+                            <div class="carousel-item pb-3">
+                                <a href="#" class="h-100">
+                                    數學
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <button class="carousel-control-next" type="button" data-bs-target="#sectionJobCardCarousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <!-- 輪播主容器 -->
+            <div id="sectionJobCardCarousel" class="carousel slide" data-bs-ride="carousel">
+                <!-- 輪播卡片組 -->
+                <div class="wrapper d-flex justify-content-center">
+                    <div class="carousel-inner" style="width: 1020px; min-width: 1020px;">
+                        <div class="carousel-item pb-3 active">
+                            <div class="d-flex justify-content-around">
+                                <a href="#" class="card drop-shadow-2-4-8-orange"
+                                    style="width: 330px; min-width: 330px;">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="bg-img-tr me-2"></div>
+                                            <div style="width: 65%;">
+                                                <h5 class="text-nowrap text-truncate fw-bold">AI Robotic Arm 老師</h5>
+                                                <h6 class="text-nowrap text-truncate fw-bolder text-orange-analogous">
+                                                    三山樂高機械兒童程式補習班</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-located.svg" alt="located">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <span>臺中市</span>&nbsp;
+                                                        <span>南屯區</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-time.svg" alt="time">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <span>週四</span>&nbsp;
+                                                        <span>晚上</span>&nbsp;
+                                                        <span>18:00</span>&nbsp;
+                                                        -&nbsp;
+                                                        <span>21:00</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-wage.svg" alt="wage">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        NT$&nbsp;
+                                                        <span>600</span>&nbsp;
+                                                        -&nbsp;
+                                                        <span>800</span>&nbsp;
+                                                        /&nbsp;時
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <div
+                                                            class="me-2 border border-warning text-warning body-text-14 px-1 border-2 fw-bolder">
+                                                            樂高</div>
+                                                        <div
+                                                            class="border border-primary text-primary body-text-14 px-1 border-2 fw-bolder">
+                                                            無經驗可</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="#" class="card drop-shadow-2-4-8-orange"
+                                    style="width: 330px; min-width: 330px;">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="bg-img-tr-2 me-2"></div>
+                                            <div style="width: 65%;">
+                                                <h5 class="text-nowrap text-truncate fw-bold">遊戲開發 老師</h5>
+                                                <h6 class="text-nowrap text-truncate fw-bolder text-orange-analogous">
+                                                    立志補習班</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-located.svg" alt="located">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <span>臺中市</span>&nbsp;
+                                                        <span>北屯區</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-time.svg" alt="time">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <span>週一至週五</span>&nbsp;
+                                                        <span>下午</span>&nbsp;
+                                                        <span>16:00</span>&nbsp;
+                                                        -&nbsp;
+                                                        <span>20:00</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-wage.svg" alt="wage">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        NT$&nbsp;
+                                                        <span>600</span>&nbsp;
+                                                        -&nbsp;
+                                                        <span>800</span>&nbsp;
+                                                        /&nbsp;時
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <div
+                                                            class="me-2 border border-warning text-warning body-text-14 px-1 border-2 fw-bolder">
+                                                            Unity</div>
+                                                        <div
+                                                            class="border border-primary text-primary body-text-14 px-1 border-2 fw-bolder">
+                                                            相關科系</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="#" class="card drop-shadow-2-4-8-orange"
+                                    style="width: 330px; min-width: 330px;">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="bg-img-tr-3 me-2"></div>
+                                            <div style="width: 65%;">
+                                                <h5 class="text-nowrap text-truncate fw-bold">英文寫作 老師</h5>
+                                                <h6 class="text-nowrap text-truncate fw-bolder text-orange-analogous">
+                                                    ABC補習班</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-located.svg" alt="located">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <span>台北市</span>&nbsp;
+                                                        <span>南屯區</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-time.svg" alt="time">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <span>週三</span>&nbsp;
+                                                        <span>晚上</span>&nbsp;
+                                                        <span>19:00</span>&nbsp;
+                                                        -&nbsp;
+                                                        <span>21:00</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-wage.svg" alt="wage">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        NT$&nbsp;
+                                                        <span>500</span>&nbsp;
+                                                        -&nbsp;
+                                                        <span>700</span>&nbsp;
+                                                        /&nbsp;時
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <div
+                                                            class="me-2 border border-warning text-warning body-text-14 px-1 border-2 fw-bolder">
+                                                            英文寫作</div>
+                                                        <div
+                                                            class="border border-primary text-primary body-text-14 px-1 border-2 fw-bolder">
+                                                            相關科系</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="carousel-item pb-3">
+                            <div class="d-flex justify-content-around">
+                                <a href="#" class="card drop-shadow-2-4-8-orange"
+                                    style="width: 330px; min-width: 330px;">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="bg-img-tr-2 me-2"></div>
+                                            <div style="width: 65%;">
+                                                <h5 class="text-nowrap text-truncate fw-bold">網頁設計 老師</h5>
+                                                <h6 class="text-nowrap text-truncate fw-bolder text-orange-analogous">
+                                                    創意補習班</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-located.svg" alt="located">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <span>台南市</span>&nbsp;
+                                                        <span>中西區</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-time.svg" alt="time">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <span>週二</span>&nbsp;
+                                                        <span>晚上</span>&nbsp;
+                                                        <span>18:30</span>&nbsp;
+                                                        -&nbsp;
+                                                        <span>20:30</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-wage.svg" alt="wage">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        NT$&nbsp;
+                                                        <span>600</span>&nbsp;
+                                                        -&nbsp;
+                                                        <span>900</span>&nbsp;
+                                                        /&nbsp;時
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <div
+                                                            class="me-2 border border-warning text-warning body-text-14 px-1 border-2 fw-bolder">
+                                                            Javascript</div>
+                                                        <div
+                                                            class="border border-primary text-primary body-text-14 px-1 border-2 fw-bolder">
+                                                            無經驗可</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="#" class="card drop-shadow-2-4-8-orange"
+                                    style="width: 330px; min-width: 330px;">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="bg-img-tr-3 me-2"></div>
+                                            <div style="width: 65%;">
+                                                <h5 class="text-nowrap text-truncate fw-bold">3D列印 老師</h5>
+                                                <h6 class="text-nowrap text-truncate fw-bolder text-orange-analogous">
+                                                    經典補習班</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-located.svg" alt="located">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <span>新竹市</span>&nbsp;
+                                                        <span>東區</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-time.svg" alt="time">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <span>週二</span>&nbsp;
+                                                        <span>晚上</span>&nbsp;
+                                                        <span>18:00</span>&nbsp;
+                                                        -&nbsp;
+                                                        <span>20:00</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-wage.svg" alt="wage">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        NT$&nbsp;
+                                                        <span>700</span>&nbsp;
+                                                        -&nbsp;
+                                                        <span>1000</span>&nbsp;
+                                                        /&nbsp;時
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <div
+                                                            class="me-2 border border-warning text-warning body-text-14 px-1 border-2 fw-bolder">
+                                                            3D列印</div>
+                                                        <div
+                                                            class="border border-primary text-primary body-text-14 px-1 border-2 fw-bolder">
+                                                            相關科系</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="#" class="card drop-shadow-2-4-8-orange"
+                                    style="width: 330px; min-width: 330px;">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="bg-img-tr me-2"></div>
+                                            <div style="width: 65%;">
+                                                <h5 class="text-nowrap text-truncate fw-bold">Minecraft 老師</h5>
+                                                <h6 class="text-nowrap text-truncate fw-bolder text-orange-analogous">
+                                                    三山兒童程式補習班</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-located.svg" alt="located">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <span>臺中市</span>&nbsp;
+                                                        <span>南屯區</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-time.svg" alt="time">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <span>週四</span>&nbsp;
+                                                        <span>晚上</span>&nbsp;
+                                                        <span>18:00</span>&nbsp;
+                                                        -&nbsp;
+                                                        <span>21:00</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-wage.svg" alt="wage">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        NT$&nbsp;
+                                                        <span>600</span>&nbsp;
+                                                        -&nbsp;
+                                                        <span>800</span>&nbsp;
+                                                        /&nbsp;時
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <div
+                                                            class="me-2 border border-warning text-warning body-text-14 px-1 border-2 fw-bolder">
+                                                            兒童程式</div>
+                                                        <div
+                                                            class="border border-primary text-primary body-text-14 px-1 border-2 fw-bolder">
+                                                            無經驗可</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="carousel-item pb-3">
+                            <div class="d-flex justify-content-around">
+                                <a href="#" class="card drop-shadow-2-4-8-orange"
+                                    style="width: 330px; min-width: 330px;">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="bg-img-tr-3 me-2"></div>
+                                            <div style="width: 65%;">
+                                                <h5 class="text-nowrap text-truncate fw-bold">木工 老師</h5>
+                                                <h6 class="text-nowrap text-truncate fw-bolder text-orange-analogous">
+                                                    夢想補習班</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-located.svg" alt="located">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <span>新北市</span>&nbsp;
+                                                        <span>三峽區</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-time.svg" alt="time">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <span>週五</span>&nbsp;
+                                                        <span>下午</span>&nbsp;
+                                                        <span>14:00</span>&nbsp;
+                                                        -&nbsp;
+                                                        <span>17:00</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-wage.svg" alt="wage">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        NT$&nbsp;
+                                                        <span>700</span>&nbsp;
+                                                        -&nbsp;
+                                                        <span>900</span>&nbsp;
+                                                        /&nbsp;時
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <div
+                                                            class="me-2 border border-warning text-warning body-text-14 px-1 border-2 fw-bolder">
+                                                            木工操作</div>
+                                                        <div
+                                                            class="border border-primary text-primary body-text-14 px-1 border-2 fw-bolder">
+                                                            二年經驗</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="#" class="card drop-shadow-2-4-8-orange"
+                                    style="width: 330px; min-width: 330px;">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="bg-img-tr me-2"></div>
+                                            <div style="width: 65%;">
+                                                <h5 class="text-nowrap text-truncate fw-bold">Minecraft 老師</h5>
+                                                <h6 class="text-nowrap text-truncate fw-bolder text-orange-analogous">
+                                                    三山兒童程式補習班</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-located.svg" alt="located">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <span>臺中市</span>&nbsp;
+                                                        <span>南屯區</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-time.svg" alt="time">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <span>週四</span>&nbsp;
+                                                        <span>晚上</span>&nbsp;
+                                                        <span>18:00</span>&nbsp;
+                                                        -&nbsp;
+                                                        <span>21:00</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-wage.svg" alt="wage">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        NT$&nbsp;
+                                                        <span>600</span>&nbsp;
+                                                        -&nbsp;
+                                                        <span>800</span>&nbsp;
+                                                        /&nbsp;時
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <div
+                                                            class="me-2 border border-warning text-warning body-text-14 px-1 border-2 fw-bolder">
+                                                            兒童程式</div>
+                                                        <div
+                                                            class="border border-primary text-primary body-text-14 px-1 border-2 fw-bolder">
+                                                            無經驗可</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="#" class="card drop-shadow-2-4-8-orange"
+                                    style="width: 330px; min-width: 330px;">
+                                    <div class="card-body">
+                                        <div class="d-flex">
+                                            <div class="bg-img-tr-2 me-2"></div>
+                                            <div style="width: 65%;">
+                                                <h5 class="text-nowrap text-truncate fw-bold">圍棋 老師</h5>
+                                                <h6 class="text-nowrap text-truncate fw-bolder text-orange-analogous">
+                                                    智慧補習班</h6>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-located.svg" alt="located">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <span>臺中市</span>&nbsp;
+                                                        <span>南區</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-time.svg" alt="time">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <span>週六</span>&nbsp;
+                                                        <span>上午</span>&nbsp;
+                                                        <span>09:00</span>&nbsp;
+                                                        -&nbsp;
+                                                        <span>12:00</span>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-1 d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-wage.svg" alt="wage">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        NT$&nbsp;
+                                                        <span>500</span>&nbsp;
+                                                        -&nbsp;
+                                                        <span>700</span>&nbsp;
+                                                        /&nbsp;時
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <div
+                                                            class="me-2 border border-warning text-warning body-text-14 px-1 border-2 fw-bolder">
+                                                            圍棋</div>
+                                                        <div
+                                                            class="border border-primary text-primary body-text-14 px-1 border-2 fw-bolder">
+                                                            一年經驗</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 熱門職缺輪播卡片左右控制項按鈕 -->
+                <!-- 熱門職缺輪播卡片左控制項按鈕 -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#sectionJobCardCarousel"
+                    data-bs-slide="prev" style="left: -200px;">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <!-- 熱門職缺輪播卡片右控制項按鈕 -->
+                <button class="carousel-control-next" type="button" data-bs-target="#sectionJobCardCarousel"
+                    data-bs-slide="next" style="right: -200px;">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <!-- 熱門職缺下方切換導覽列 -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#sectionJobCardCarousel" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#sectionJobCardCarousel" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#sectionJobCardCarousel" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section-2 精選師資 -->
+    <section class="bg-light">
+        <div class="container py-5">
+            <!-- section icon 標題 -->
+            <div class="d-flex justify-content-between text-nowrap mb-3">
+                <!-- icon 精選師資 -->
+                <div class="d-flex align-items-center">
+                    <h4 class="fw-bold">
+                        <span>
+                            <img class="me-2" src="./img/section-icon/chat-left-heart.svg" alt="精選師資">
+                        </span>
+                        精選師資
+                    </h4>
+                </div>
+                <!-- 更多師資 -->
+                <div class="d-flex align-items-center">
+                    <a class="text-decoration-none" href="#">
+                        <h6 class="look-more fw-bold text-orange-primary">
+                            更多師資
+                            <span>
+                                <img src="./img/arrow-icon/Rectangle 6.svg" alt="更多熱門職缺">
+                            </span>
+                        </h6>
+                    </a>
+                </div>
+            </div>
+            <!-- 主容器 -->
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="mx-3">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4 col-xl-3 mb-3">
+                            <!-- 師資輪播區卡片-1 -->
+                            <div id="carouselSlidesOnly-1" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <a href="#" class="card drop-shadow-2-4-8-orange">
+                                            <img class="card-title card-img-top card-teacher-img"
+                                                src="./img/teacher/4-3/christian-buehner-DItYlc26zVI-unsplash.png"
+                                                alt="teacher-1" style="height: 11rem;">
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title fw-bold mb-3 text-center text-truncate"
+                                                    style="width: 100%;">
+                                                    <span>簡昆蟲</span>&nbsp;(<span>Bug 老師</span>)
+                                                </h5>
+                                                <div class="d-flex mb-2">
+                                                    <div class="pe-2 me-2 border-end border-2 text-nowrap">學歷</div>
+                                                    <div class="text-nowrap text-truncate">
+                                                        <span>逢甲大學</span>&nbsp;
+                                                        <span>工業工程與管理學系</span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex mb-2" style="width: 100%;">
+                                                    <div class="pe-2 border-end border-2 text-nowrap">經歷</div>
+                                                    <div class="ps-2 text-nowrap text-truncate">
+                                                        <p class="text-nowrap text-truncate">
+                                                            1. 不專業後端工程師 2 年<br>
+                                                            2. TempEDU 樂齡桌遊講師 4 年<br>
+                                                            3. CodingCake 兒童程式老師 1 年
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex text-nowrap text-truncate">
+                                                        <div
+                                                            class="me-2 border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            Minecraft</div>
+                                                        <div
+                                                            class="border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            Python</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="#" class="card drop-shadow-2-4-8-orange h-100">
+                                            <img class="card-title card-img-top card-teacher-img"
+                                                src="./img/teacher/4-3/brian-tromp-MxkYQ39KFmE-unsplash.png"
+                                                alt="teacher-2" style="height: 11rem;">
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title fw-bold mb-3 text-center text-truncate"
+                                                    style="width: 100%;">
+                                                    <span>許婷婷</span>&nbsp;(<span>歐歐 老師</span>)
+                                                </h5>
+                                                <div class="d-flex mb-2">
+                                                    <div class="pe-2 me-2 border-end border-2 text-nowrap">學歷</div>
+                                                    <div class="text-nowrap text-truncate">
+                                                        <span>國立清華大學</span>&nbsp;
+                                                        <span>生命科學系</span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex mb-2" style="width: 100%;">
+                                                    <div class="pe-2 border-end border-2 text-nowrap">經歷</div>
+                                                    <div class="ps-2 text-nowrap text-truncate">
+                                                        <p class="text-nowrap text-truncate">
+                                                            1. 台灣國家衛生研究院 生物科技研究員<br>
+                                                            2. 美國加州大學洛杉磯分校 生物科學博士後研究員<br>
+                                                            3. 國立陽明大學 生物科學系副教授
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex text-nowrap text-truncate">
+                                                        <div
+                                                            class="me-2 border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            生物學</div>
+                                                        <div
+                                                            class="border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            Locking</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="#" class="card drop-shadow-2-4-8-orange h-100">
+                                            <img class="card-title card-img-top card-teacher-img"
+                                                src="./img/teacher/4-3/christina-wocintechchat-com-c-mgSuxqpzA-unsplash.png"
+                                                alt="teacher-1" style="height: 11rem;">
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title fw-bold mb-3 text-center text-truncate"
+                                                    style="width: 100%;">
+                                                    <span>林小美</span>&nbsp;(<span>小美 老師</span>)
+                                                </h5>
+                                                <div class="d-flex mb-2">
+                                                    <div class="pe-2 me-2 border-end border-2 text-nowrap">學歷</div>
+                                                    <div class="text-nowrap text-truncate">
+                                                        <span>國立成功大學</span>&nbsp;
+                                                        <span>資訊工程學系</span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex mb-2" style="width: 100%;">
+                                                    <div class="pe-2 border-end border-2 text-nowrap">經歷</div>
+                                                    <div class="ps-2 text-nowrap text-truncate">
+                                                        <p class="text-nowrap text-truncate">
+                                                            1. 美好科技公司 前端工程師<br>
+                                                            2. 中華電信 前端工程師<br>
+                                                            3. 自由接案前端工程師
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex text-nowrap text-truncate">
+                                                        <div
+                                                            class="me-2 border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            Javascript</div>
+                                                        <div
+                                                            class="border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            鋼琴</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="#" class="card drop-shadow-2-4-8-orange h-100">
+                                            <img class="card-title card-img-top card-teacher-img"
+                                                src="./img/teacher/4-3/icons8-team-FcLyt7lW5wg-unsplash.png"
+                                                alt="teacher-1" style="height: 11rem;">
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title fw-bold mb-3 text-center text-truncate"
+                                                    style="width: 100%;">
+                                                    <span>王佳芳</span>&nbsp;(<span>Cherry 老師</span>)
+                                                </h5>
+                                                <div class="d-flex mb-2">
+                                                    <div class="pe-2 me-2 border-end border-2 text-nowrap">學歷</div>
+                                                    <div class="text-nowrap text-truncate">
+                                                        <span>國立政治大學</span>&nbsp;
+                                                        <span>中國文學系</span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex mb-2" style="width: 100%;">
+                                                    <div class="pe-2 border-end border-2 text-nowrap">經歷</div>
+                                                    <div class="ps-2 text-nowrap text-truncate">
+                                                        <p class="text-nowrap text-truncate">
+                                                            1. 國立中央大學 中文系助理教授<br>
+                                                            2. 國立臺灣大學 中國文學系助理教授<br>
+                                                            3. 國立中山大學 中國文學系副教授
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex text-nowrap text-truncate">
+                                                        <div
+                                                            class="me-2 border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            文學</div>
+                                                        <div
+                                                            class="border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            園藝</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 col-xl-3 mb-3">
+                            <!-- 師資輪播區卡片-2 -->
+                            <div id="carouselSlidesOnly-2" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <a href="#" class="card drop-shadow-2-4-8-orange h-100">
+                                            <img class="card-title card-img-top card-teacher-img"
+                                                src="./img/teacher/4-3/sigmund-a19OVaa2rzA-unsplash.png" alt="teacher-1"
+                                                style="height: 11rem;">
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title fw-bold mb-3 text-center text-truncate"
+                                                    style="width: 100%;">
+                                                    <span>李婷婷</span>&nbsp;(<span>婷婷 老師</span>)
+                                                </h5>
+                                                <div class="d-flex mb-2">
+                                                    <div class="pe-2 me-2 border-end border-2 text-nowrap">學歷</div>
+                                                    <div class="text-nowrap text-truncate">
+                                                        <span>東海大學</span>&nbsp;
+                                                        <span>法律學系</span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex mb-2" style="width: 100%;">
+                                                    <div class="pe-2 border-end border-2 text-nowrap">經歷</div>
+                                                    <div class="ps-2 text-nowrap text-truncate">
+                                                        <p class="text-nowrap text-truncate">
+                                                            1. 司法院法官<br>
+                                                            2. 臺灣高等法院法官<br>
+                                                            3. 高雄地方法院法官
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex text-nowrap text-truncate">
+                                                        <div
+                                                            class="me-2 border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            刑法</div>
+                                                        <div
+                                                            class="border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            憲法</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="#" class="card drop-shadow-2-4-8-orange h-100">
+                                            <img class="card-title card-img-top card-teacher-img"
+                                                src="./img/teacher/4-3/jonas-kakaroto-KIPqvvTOC1s-unsplash.png"
+                                                alt="teacher-1" style="height: 11rem;">
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title fw-bold mb-3 text-center text-truncate"
+                                                    style="width: 100%;">
+                                                    <span>林冠宇</span>&nbsp;(<span>宇宙 老師</span>)
+                                                </h5>
+                                                <div class="d-flex mb-2">
+                                                    <div class="pe-2 me-2 border-end border-2 text-nowrap">學歷</div>
+                                                    <div class="text-nowrap text-truncate">
+                                                        <span>國立臺灣大學</span>&nbsp;
+                                                        <span>生物科學與技術學系</span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex mb-2" style="width: 100%;">
+                                                    <div class="pe-2 border-end border-2 text-nowrap">經歷</div>
+                                                    <div class="ps-2 text-nowrap text-truncate">
+                                                        <p class="text-nowrap text-truncate">
+                                                            1. 台灣國家衛生研究院 研究助理<br>
+                                                            2. 美國哈佛大學 生物科學博士後研究員<br>
+                                                            3. 國立中山大學 生命科學系副教授
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex text-nowrap text-truncate">
+                                                        <div
+                                                            class="me-2 border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            生物學</div>
+                                                        <div
+                                                            class="border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            遺傳學</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="#" class="card drop-shadow-2-4-8-orange h-100">
+                                            <img class="card-title card-img-top card-teacher-img"
+                                                src="./img/teacher/4-3/icons8-team-FcLyt7lW5wg-unsplash.png"
+                                                alt="teacher-1" style="height: 11rem;">
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title fw-bold mb-3 text-center text-truncate"
+                                                    style="width: 100%;">
+                                                    <span>林瑞琳</span>&nbsp;(<span>Linda 老師</span>)
+                                                </h5>
+                                                <div class="d-flex mb-2">
+                                                    <div class="pe-2 me-2 border-end border-2 text-nowrap">學歷</div>
+                                                    <div class="text-nowrap text-truncate">
+                                                        <span>國立台灣師範大學</span>&nbsp;
+                                                        <span>國文學系</span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex mb-2" style="width: 100%;">
+                                                    <div class="pe-2 border-end border-2 text-nowrap">經歷</div>
+                                                    <div class="ps-2 text-nowrap text-truncate">
+                                                        <p class="text-nowrap text-truncate">
+                                                            1. 國立高雄師範大學 國文系助理教授<br>
+                                                            2. 國立政治大學 中文系副教授<br>
+                                                            3. 國立臺灣師範大學 國文系教授
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex text-nowrap text-truncate">
+                                                        <div
+                                                            class="me-2 border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            文學</div>
+                                                        <div
+                                                            class="border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            烹飪</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="#" class="card drop-shadow-2-4-8-orange h-100">
+                                            <img class="card-title card-img-top card-teacher-img"
+                                                src="./img/teacher/4-3/christina-wocintechchat-com-c-mgSuxqpzA-unsplash.png"
+                                                alt="teacher-1" style="height: 11rem;">
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title fw-bold mb-3 text-center text-truncate"
+                                                    style="width: 100%;">
+                                                    <span>許婷婷</span>&nbsp;(<span>歐歐 老師</span>)
+                                                </h5>
+                                                <div class="d-flex mb-2">
+                                                    <div class="pe-2 me-2 border-end border-2 text-nowrap">學歷</div>
+                                                    <div class="text-nowrap text-truncate">
+                                                        <span>國立清華大學</span>&nbsp;
+                                                        <span>生命科學系</span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex mb-2" style="width: 100%;">
+                                                    <div class="pe-2 border-end border-2 text-nowrap">經歷</div>
+                                                    <div class="ps-2 text-nowrap text-truncate">
+                                                        <p class="text-nowrap text-truncate">
+                                                            1. 台灣國家衛生研究院 生物科技研究員<br>
+                                                            2. 美國加州大學洛杉磯分校 生物科學博士後研究員<br>
+                                                            3. 國立陽明大學 生物科學系副教授
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex text-nowrap text-truncate">
+                                                        <div
+                                                            class="me-2 border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            生物學</div>
+                                                        <div
+                                                            class="border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            Locking</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 col-xl-3 mb-3">
+                            <!-- 師資輪播區卡片-3 -->
+                            <div id="carouselSlidesOnly-3" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <a href="#" class="card drop-shadow-2-4-8-orange h-100">
+                                            <img class="card-title card-img-top card-teacher-img"
+                                                src="./img/teacher/4-3/jonas-kakaroto-KIPqvvTOC1s-unsplash.png"
+                                                alt="teacher-1" style="height: 11rem;">
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title fw-bold mb-3 text-center text-truncate"
+                                                    style="width: 100%;">
+                                                    <span>吳維中</span>&nbsp;(<span>阿布 老師</span>)
+                                                </h5>
+                                                <div class="d-flex mb-2">
+                                                    <div class="pe-2 me-2 border-end border-2 text-nowrap">學歷</div>
+                                                    <div class="text-nowrap text-truncate">
+                                                        <span>國立台灣大學</span>&nbsp;
+                                                        <span>應用數學系</span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex mb-2" style="width: 100%;">
+                                                    <div class="pe-2 border-end border-2 text-nowrap">經歷</div>
+                                                    <div class="ps-2 text-nowrap text-truncate">
+                                                        <p class="text-nowrap text-truncate">
+                                                            1. 台灣大學 數學系博士班<br>
+                                                            2. 美國史丹佛大學 數學系博士後研究員<br>
+                                                            3. 國立中央大學 數學系副教授
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex text-nowrap text-truncate">
+                                                        <div
+                                                            class="me-2 border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            微積分</div>
+                                                        <div
+                                                            class="border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            應用數學</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="#" class="card drop-shadow-2-4-8-orange h-100">
+                                            <img class="card-title card-img-top card-teacher-img"
+                                                src="./img/teacher/4-3/sigmund-a19OVaa2rzA-unsplash.png" alt="teacher-1"
+                                                style="height: 11rem;">
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title fw-bold mb-3 text-center text-truncate"
+                                                    style="width: 100%;">
+                                                    <span>林明宏</span>&nbsp;(<span>熊熊 老師</span>)
+                                                </h5>
+                                                <div class="d-flex mb-2">
+                                                    <div class="pe-2 me-2 border-end border-2 text-nowrap">學歷</div>
+                                                    <div class="text-nowrap text-truncate">
+                                                        <span>國立交通大學</span>&nbsp;
+                                                        <span>電機工程學系</span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex mb-2" style="width: 100%;">
+                                                    <div class="pe-2 border-end border-2 text-nowrap">經歷</div>
+                                                    <div class="ps-2 text-nowrap text-truncate">
+                                                        <p class="text-nowrap text-truncate">
+                                                            1. 台灣積體電路製造公司 工程師<br>
+                                                            2. 聯發科技公司 工程師<br>
+                                                            3. 台達電子 資深研發工程師
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex text-nowrap text-truncate">
+                                                        <div
+                                                            class="me-2 border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            電子學</div>
+                                                        <div
+                                                            class="border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            高爾夫</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="#" class="card drop-shadow-2-4-8-orange h-100">
+                                            <img class="card-title card-img-top card-teacher-img"
+                                                src="./img/teacher/4-3/brian-tromp-MxkYQ39KFmE-unsplash.png"
+                                                alt="teacher-1" style="height: 11rem;">
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title fw-bold mb-3 text-center text-truncate"
+                                                    style="width: 100%;">
+                                                    <span>張廖秋</span>&nbsp;(<span>小丘 老師</span>)
+                                                </h5>
+                                                <div class="d-flex mb-2">
+                                                    <div class="pe-2 me-2 border-end border-2 text-nowrap">學歷</div>
+                                                    <div class="text-nowrap text-truncate">
+                                                        <span>逢甲大學</span>&nbsp;
+                                                        <span>企業管理學系</span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex mb-2" style="width: 100%;">
+                                                    <div class="pe-2 border-end border-2 text-nowrap">經歷</div>
+                                                    <div class="ps-2 text-nowrap text-truncate">
+                                                        <p class="text-nowrap text-truncate">
+                                                            1. 台灣大哥大 行銷企劃<br>
+                                                            2. 台灣新光銀行 財富管理師<br>
+                                                            3. 富邦人壽 金融專員
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex text-nowrap text-truncate">
+                                                        <div
+                                                            class="me-2 border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            財富管理</div>
+                                                        <div
+                                                            class="border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            鋼琴</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="#" class="card drop-shadow-2-4-8-orange h-100">
+                                            <img class="card-title card-img-top card-teacher-img"
+                                                src="./img/teacher/4-3/christian-buehner-DItYlc26zVI-unsplash.png"
+                                                alt="teacher-1" style="height: 11rem;">
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title fw-bold mb-3 text-center text-truncate"
+                                                    style="width: 100%;">
+                                                    <span>張志明</span>&nbsp;(<span>小明 老師</span>)
+                                                </h5>
+                                                <div class="d-flex mb-2">
+                                                    <div class="pe-2 me-2 border-end border-2 text-nowrap">學歷</div>
+                                                    <div class="text-nowrap text-truncate">
+                                                        <span>國立清華大學</span>&nbsp;
+                                                        <span>物理學系</span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex mb-2" style="width: 100%;">
+                                                    <div class="pe-2 border-end border-2 text-nowrap">經歷</div>
+                                                    <div class="ps-2 text-nowrap text-truncate">
+                                                        <p class="text-nowrap text-truncate">
+                                                            1. 台灣積體電路製造公司 工程師<br>
+                                                            2. 聯發科技公司 工程師<br>
+                                                            3. 國立中正大學 物理學系助理教授
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex text-nowrap text-truncate">
+                                                        <div
+                                                            class="me-2 border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            物理學</div>
+                                                        <div
+                                                            class="border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            量子力學</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 col-xl-3 mb-3">
+                            <!-- 師資輪播區卡片-4 -->
+                            <div id="carouselSlidesOnly-4" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <a href="#" class="card drop-shadow-2-4-8-orange h-100">
+                                            <img class="card-title card-img-top card-teacher-img"
+                                                src="./img/teacher/4-3/icons8-team-FcLyt7lW5wg-unsplash.png"
+                                                alt="teacher-1" style="height: 11rem;">
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title fw-bold mb-3 text-center text-truncate"
+                                                    style="width: 100%;">
+                                                    <span>徐子欣</span>&nbsp;(<span>桃子 老師</span>)
+                                                </h5>
+                                                <div class="d-flex mb-2">
+                                                    <div class="pe-2 me-2 border-end border-2 text-nowrap">學歷</div>
+                                                    <div class="text-nowrap text-truncate">
+                                                        <span>國立中正大學</span>&nbsp;
+                                                        <span>企業管理學系</span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex mb-2" style="width: 100%;">
+                                                    <div class="pe-2 border-end border-2 text-nowrap">經歷</div>
+                                                    <div class="ps-2 text-nowrap text-truncate">
+                                                        <p class="text-nowrap text-truncate">
+                                                            1. 中華電信 行銷企劃<br>
+                                                            2. 台灣新光銀行 財富管理師<br>
+                                                            3. 富邦人壽 金融專員
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex text-nowrap text-truncate">
+                                                        <div
+                                                            class="me-2 border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            基金投資</div>
+                                                        <div
+                                                            class="border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            財富管理</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="#" class="card drop-shadow-2-4-8-orange h-100">
+                                            <img class="card-title card-img-top card-teacher-img"
+                                                src="./img/teacher/4-3/christina-wocintechchat-com-c-mgSuxqpzA-unsplash.png"
+                                                alt="teacher-1" style="height: 11rem;">
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title fw-bold mb-3 text-center text-truncate"
+                                                    style="width: 100%;">
+                                                    <span>鍾曉琪</span>&nbsp;(<span>琪琪 老師</span>)
+                                                </h5>
+                                                <div class="d-flex mb-2">
+                                                    <div class="pe-2 me-2 border-end border-2 text-nowrap">學歷</div>
+                                                    <div class="text-nowrap text-truncate">
+                                                        <span>逢甲大學</span>&nbsp;
+                                                        <span>資訊工程學系</span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex mb-2" style="width: 100%;">
+                                                    <div class="pe-2 border-end border-2 text-nowrap">經歷</div>
+                                                    <div class="ps-2 text-nowrap text-truncate">
+                                                        <p class="text-nowrap text-truncate">
+                                                            1. 美好科技公司 前端工程師<br>
+                                                            2. 自由接案前端工程師<br>
+                                                            3. 遠傳電信 前端工程師
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex text-nowrap text-truncate">
+                                                        <div
+                                                            class="me-2 border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            Node.js</div>
+                                                        <div
+                                                            class="border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            Vue</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="#" class="card drop-shadow-2-4-8-orange h-100">
+                                            <img class="card-title card-img-top card-teacher-img"
+                                                src="./img/teacher/4-3/christian-buehner-DItYlc26zVI-unsplash.png"
+                                                alt="teacher-1" style="height: 11rem;">
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title fw-bold mb-3 text-center text-truncate"
+                                                    style="width: 100%;">
+                                                    <span>林明宏</span>&nbsp;(<span>sky 老師</span>)
+                                                </h5>
+                                                <div class="d-flex mb-2">
+                                                    <div class="pe-2 me-2 border-end border-2 text-nowrap">學歷</div>
+                                                    <div class="text-nowrap text-truncate">
+                                                        <span>台灣大學</span>&nbsp;
+                                                        <span>法律學系</span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex mb-2" style="width: 100%;">
+                                                    <div class="pe-2 border-end border-2 text-nowrap">經歷</div>
+                                                    <div class="ps-2 text-nowrap text-truncate">
+                                                        <p class="text-nowrap text-truncate">
+                                                            1. 臺灣高等法院法官<br>
+                                                            2. 台北地方法院法官<br>
+                                                            3. 司法院法官
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex text-nowrap text-truncate">
+                                                        <div
+                                                            class="me-2 border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            訴訟法</div>
+                                                        <div
+                                                            class="border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            鋼琴</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <a href="#" class="card drop-shadow-2-4-8-orange h-100">
+                                            <img class="card-title card-img-top card-teacher-img"
+                                                src="./img/teacher/4-3/brian-tromp-MxkYQ39KFmE-unsplash.png"
+                                                alt="teacher-1" style="height: 11rem;">
+                                            <div class="d-flex align-items-end">
+                                                <!-- 愛心勾選框 -->
+                                                <label>
+                                                    <input type="checkbox" class="ui-checkbox">
+                                                    <i class="material-icons starred-icon fa-solid fa-heart fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                    <i class="material-icons unstarred-icon fa-regular fa-heart fa-beat fa-2xl"
+                                                        style="color: #f5a70a;"></i>
+                                                </label>
+                                            </div>
+                                            <div class="card-body">
+                                                <h5 class="card-title fw-bold mb-3 text-center text-truncate"
+                                                    style="width: 100%;">
+                                                    <span>關瑞琳</span>&nbsp;(<span>關關 老師</span>)
+                                                </h5>
+                                                <div class="d-flex mb-2">
+                                                    <div class="pe-2 me-2 border-end border-2 text-nowrap">學歷</div>
+                                                    <div class="text-nowrap text-truncate">
+                                                        <span>國立中山大學</span>&nbsp;
+                                                        <span>工業工程與管理學系</span>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex mb-2" style="width: 100%;">
+                                                    <div class="pe-2 border-end border-2 text-nowrap">經歷</div>
+                                                    <div class="ps-2 text-nowrap text-truncate">
+                                                        <p class="text-nowrap text-truncate">
+                                                            1. 國立中央大學 數學系副教授<br>
+                                                            2. 美國史丹佛大學 數學系博士後研究員<br>
+                                                            3. 台灣大學 數學系博士班
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="me-2">
+                                                        <img src="./img/section-1-icon/icon-tag.svg" alt="tag">
+                                                    </div>
+                                                    <div class="d-flex text-nowrap text-truncate">
+                                                        <div
+                                                            class="me-2 border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            線性代數</div>
+                                                        <div
+                                                            class="border border-info text-info body-text-14 px-1 border-2 fw-bolder">
+                                                            釣魚</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section-3 合作機構 -->
+    <section class="bg-green-tint">
+        <div class="container">
+            <!-- section icon 標題 -->
+            <div class="d-flex justify-content-between pt-5 text-nowrap mb-3">
+                <!-- icon 合作機構 -->
+                <div class="d-flex align-items-center">
+                    <h4 class="fw-bold">
+                        <span>
+                            <img class="me-2" src="./img/section-icon/bookmark-star-fill.svg" alt="熱門職缺">
+                        </span>
+                        合作機構
+                    </h4>
+                </div>
+                <!-- 更多合作機構 -->
+                <div class="d-flex align-items-center">
+                    <a class="text-decoration-none" href="#">
+                        <h6 class="look-more fw-bold text-orange-primary">
+                            更多合作機構
+                            <span>
+                                <img src="./img/arrow-icon/Rectangle 6.svg" alt="更多熱門職缺">
+                            </span>
+                        </h6>
+                    </a>
+                </div>
+            </div>
+            <!-- 合作機構卡片 -->
+            <div class="mx-5">
+                <div class="row">
+                    <div class="col-lg-6 mb-3">
+                        <!-- 合作機構左1卡片 -->
+                        <a href="#" class="card overflow-hidden h-100 drop-shadow-2-4-8-orange">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <!-- 合作機構代表圖 -->
+                                    <img class="img-fluid  h-100" src="./img/school/school-1.jpg" alt="school-1">
+                                </div>
+                                <div class="col-md-8">
+                                    <!-- 合作機構介紹 -->
+                                    <div class="card-body">
+                                        <div class="card-title row g-0 d-flex align-items-center">
+                                            <div class="col-3 px-1">
+                                                <!-- logo -->
+                                                <img class="img-fluid" src="./img/company-logo/TempEDU.png"
+                                                    alt="TempEDU">
+                                            </div>
+                                            <div class="col-9 text-nowrap">
+                                                <!-- 合作機構名稱 -->
+                                                <h5 class="text-truncate fw-bold">探教育有限公司</h5>
+                                            </div>
+                                        </div>
+                                        <!-- 介紹內容 -->
+                                        <p class="card-text text-truncate">
+                                            探教育透過專業遊戲化教學導入課程，並協助補教機構辦理師資培訓。
+                                        </p>
+                                        <div class="d-flex justify-content-end">
+                                            <!-- 職缺徵求中 -->
+                                            <small class="card-text text-orange-analogous fa-fade">職缺徵求中!!!</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <!-- 合作機構右1卡片 -->
+                        <a href="#" class="card overflow-hidden h-100 drop-shadow-2-4-8-orange">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <!-- 合作機構代表圖 -->
+                                    <img class="img-fluid h-100" src="./img/school/school-2.jpg" alt="school-2">
+                                </div>
+                                <div class="col-md-8">
+                                    <!-- 合作機構介紹 -->
+                                    <div class="card-body">
+                                        <div class="card-title row g-0 d-flex align-items-center">
+                                            <div class="col-3 px-1">
+                                                <!-- logo -->
+                                                <img class="img-fluid" src="./img/company-logo/HappyFun.png"
+                                                    alt="HappyFun">
+                                            </div>
+                                            <div class="col-9 text-nowrap">
+                                                <!-- 合作機構名稱 -->
+                                                <h5 class="text-truncate fw-bold">Happy Fun Education 快樂玩教育</h5>
+                                            </div>
+                                        </div>
+                                        <!-- 介紹內容 -->
+                                        <p class="card-text text-truncate">
+                                            深入的探討快樂玩教育，是釐清一切的關鍵。快樂玩教育的存在，令我無法停止對他的思考。愛默生深信，只要生命還可珍貴，醫生這個職業就永遠倍受崇拜。帶著這句話，我們還要更加慎重的審視這個問題。
+                                        </p>
+                                        <div class="d-flex justify-content-end">
+                                            <!-- 職缺徵求中 -->
+                                            <small class="card-text text-orange-analogous fa-fade">職缺徵求中!!!</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <!-- 合作機構左2卡片 -->
+                        <a href="#" class="card overflow-hidden h-100 drop-shadow-2-4-8-orange">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <!-- 合作機構代表圖 -->
+                                    <img class="img-fluid h-100" src="./img/school/school-3.jpg" alt="school-3">
+                                </div>
+                                <div class="col-md-8">
+                                    <!-- 合作機構介紹 -->
+                                    <div class="card-body">
+                                        <div class="card-title row g-0 d-flex align-items-center">
+                                            <div class="col-3 px-1">
+                                                <!-- logo -->
+                                                <img class="img-fluid" src="./img/company-logo/codepro.png"
+                                                    alt="codepro">
+                                            </div>
+                                            <div class="col-9 text-nowrap">
+                                                <!-- 合作機構名稱 -->
+                                                <h5 class="text-truncate fw-bold">睿智教育股份有限公司</h5>
+                                            </div>
+                                        </div>
+                                        <!-- 介紹內容 -->
+                                        <p class="card-text text-truncate">
+                                            CodePro 透過資訊、程式為媒介啟發學生思考，並藉由適齡教育，用孩子聽得懂的語言學習引領孩子翻越程式的高牆，見證下個世代的明亮未來。
+                                        </p>
+                                        <div class="d-flex justify-content-end">
+                                            <!-- 職缺徵求中 -->
+                                            <small class="card-text text-orange-analogous fa-fade">職缺徵求中!!!</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-6 mb-3">
+                        <!-- 合作機構右2卡片 -->
+                        <a href="#" class="card overflow-hidden h-100 drop-shadow-2-4-8-orange">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <!-- 合作機構代表圖 -->
+                                    <img class="img-fluid h-100" src="./img/school/school-4.jpg" alt="school-4">
+                                </div>
+                                <div class="col-md-8">
+                                    <!-- 合作機構介紹 -->
+                                    <div class="card-body">
+                                        <div class="card-title row g-0 d-flex align-items-center">
+                                            <div class="col-3 px-1">
+                                                <!-- logo -->
+                                                <img class="img-fluid" src="./img/company-logo/J&T-maker.png"
+                                                    alt="J&T-maker">
+                                            </div>
+                                            <div class="col-9 text-nowrap">
+                                                <!-- 合作機構名稱 -->
+                                                <h5 class="text-truncate fw-bold">J&T-maker</h5>
+                                            </div>
+                                        </div>
+                                        <!-- 介紹內容 -->
+                                        <p class="card-text text-truncate">
+                                            用心耕耘、用愛呵護，探索每一位孩子與眾不同的天賦，讓孩子不用委屈於城鄉
+                                        </p>
+                                        <div class="d-flex justify-content-end">
+                                            <!-- 職缺徵求中 -->
+                                            <small class="card-text text-orange-analogous fa-fade">職缺徵求中!!!</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <!-- 隱藏合作機構卡片 -->
+                <div id="hideTutoring" style="display: none;">
+                    <div class="row">
+                        <div class="col-lg-6 mb-3">
+                            <!-- 合作機構左3卡片 -->
+                            <a href="#" class="card overflow-hidden h-100 drop-shadow-2-4-8-orange">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <!-- 合作機構代表圖 -->
+                                        <img class="img-fluid  h-100" src="./img/school/school-5.jpg" alt="school-1">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <!-- 合作機構介紹 -->
+                                        <div class="card-body">
+                                            <div class="card-title row g-0 d-flex align-items-center">
+                                                <div class="col-3 px-1">
+                                                    <!-- logo -->
+                                                    <img class="img-fluid" src="./img/company-logo/HappyFun.png"
+                                                        alt="HappyFun">
+                                                </div>
+                                                <div class="col-9 text-nowrap">
+                                                    <!-- 合作機構名稱 -->
+                                                    <h5 class="text-truncate fw-bold">Happy Fun Education 快樂玩教育</h5>
+                                                </div>
+                                            </div>
+                                            <!-- 介紹內容 -->
+                                            <p class="card-text text-truncate">
+                                                深入的探討快樂玩教育，是釐清一切的關鍵。快樂玩教育的存在，令我無法停止對他的思考。愛默生深信，只要生命還可珍貴，醫生這個職業就永遠倍受崇拜。帶著這句話，我們還要更加慎重的審視這個問題。
+                                            </p>
+                                            <div class="d-flex justify-content-end">
+                                                <!-- 職缺徵求中 -->
+                                                <small class="card-text text-orange-analogous fa-fade">職缺徵求中!!!</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                            <!-- 合作機構右3卡片 -->
+                            <a href="#" class="card overflow-hidden h-100 drop-shadow-2-4-8-orange">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <!-- 合作機構代表圖 -->
+                                        <img class="img-fluid h-100" src="./img/school/school-6.jpg" alt="school-6">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <!-- 合作機構介紹 -->
+                                        <div class="card-body">
+                                            <div class="card-title row g-0 d-flex align-items-center">
+                                                <div class="col-3 px-1">
+                                                    <!-- logo -->
+                                                    <img class="img-fluid" src="./img/company-logo/TempEDU.png"
+                                                        alt="TempEDU">
+                                                </div>
+                                                <div class="col-9 text-nowrap">
+                                                    <!-- 合作機構名稱 -->
+                                                    <h5 class="text-truncate fw-bold">探教育有限公司</h5>
+                                                </div>
+                                            </div>
+                                            <!-- 介紹內容 -->
+                                            <p class="card-text text-truncate">
+                                                探教育透過專業遊戲化教學導入課程，並協助補教機構辦理師資培訓。
+                                            </p>
+                                            <div class="d-flex justify-content-end">
+                                                <!-- 職缺徵求中 -->
+                                                <small class="card-text text-orange-analogous fa-fade">職缺徵求中!!!</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                            <!-- 合作機構左4卡片 -->
+                            <a href="#" class="card overflow-hidden h-100 drop-shadow-2-4-8-orange">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <!-- 合作機構代表圖 -->
+                                        <img class="img-fluid h-100" src="./img/school/school-7.jpg" alt="school-7">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <!-- 合作機構介紹 -->
+                                        <div class="card-body">
+                                            <div class="card-title row g-0 d-flex align-items-center">
+                                                <div class="col-3 px-1">
+                                                    <!-- logo -->
+                                                    <img class="img-fluid" src="./img/company-logo/J&T-maker.png"
+                                                        alt="J&T-maker">
+                                                </div>
+                                                <div class="col-9 text-nowrap">
+                                                    <!-- 合作機構名稱 -->
+                                                    <h5 class="text-truncate fw-bold">J&T-maker</h5>
+                                                </div>
+                                            </div>
+                                            <!-- 介紹內容 -->
+                                            <p class="card-text text-truncate">
+                                                用心耕耘、用愛呵護，探索每一位孩子與眾不同的天賦，讓孩子不用委屈於城鄉
+                                            </p>
+                                            <div class="d-flex justify-content-end">
+                                                <!-- 職缺徵求中 -->
+                                                <small class="card-text text-orange-analogous fa-fade">職缺徵求中!!!</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-6 mb-3">
+                            <!-- 合作機構右4卡片 -->
+                            <a href="#" class="card overflow-hidden h-100 drop-shadow-2-4-8-orange">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <!-- 合作機構代表圖 -->
+                                        <img class="img-fluid h-100" src="./img/school/school-8.jpg" alt="school-8">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <!-- 合作機構介紹 -->
+                                        <div class="card-body">
+                                            <div class="card-title row g-0 d-flex align-items-center">
+                                                <div class="col-3 px-1">
+                                                    <!-- logo -->
+                                                    <img class="img-fluid" src="./img/company-logo/codepro.png"
+                                                        alt="codepro">
+                                                </div>
+                                                <div class="col-9 text-nowrap">
+                                                    <!-- 合作機構名稱 -->
+                                                    <h5 class="text-truncate fw-bold">睿智教育股份有限公司</h5>
+                                                </div>
+                                            </div>
+                                            <!-- 介紹內容 -->
+                                            <p class="card-text text-truncate">
+                                                CodePro 透過資訊、程式為媒介啟發學生思考，並藉由適齡教育，用孩子聽得懂的語言學習引領孩子翻越程式的高牆，見證下個世代的明亮未來。
+                                            </p>
+                                            <div class="d-flex justify-content-end">
+                                                <!-- 職缺徵求中 -->
+                                                <small class="card-text text-orange-analogous fa-fade">職缺徵求中!!!</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 隱藏/顯示按鈕 -->
+                <div class="d-flex justify-content-center">
+                    <button id="showTutoring" onclick="showTutoring()" class="btn my-3">
+                        <i class="fa-solid fa-angles-down fa-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- footer -->
+    <footer class="bg-orange-analogous">
+        <div class="container text-white">
+            <div class="row d-flex pb-4">
+                <div class="col-lg-3 pt-4">
+                    <!-- logo -->
+                    <a class="navbar-brand fw-semibold fs-2" href="#">
+                        TEMPO
+                    </a><br>
+                    <!-- 服務時間、電話 -->
+                    <small> 服務時間：<br>
+                        週一&nbsp;-&nbsp;週六&nbsp;10:00&nbsp;-&nbsp;18:00<br>
+                        電話：04-23211108
+                    </small>
+                </div>
+                <div class="col-md-12 col-lg-6 pt-5 d-flex justify-content-around">
+                    <!-- 找工作 -->
+                    <div class="">
+                        <h5 class="fw-bold">找工作</h5>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a class="text-white" style="text-decoration: none;" href="#">
+                                    職缺搜尋
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 找老師 -->
+                    <div class="">
+                        <h5 class="fw-bold">找老師</h5>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a class="text-white" style="text-decoration: none;" href="#">
+                                    職缺刊登
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 服務方案 -->
+                    <div class="">
+                        <h5 class="fw-bold">服務方案</h5>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a class="text-white" style="text-decoration: none;" href="#">
+                                    補教徵才
+                                </a>
+                            </li>
+                            <li>
+                                <a class="text-white" style="text-decoration: none;" href="#">
+                                    老師應徵
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 關於TEMPO -->
+                    <div class="">
+                        <h5 class="fw-bold">關於TEMPO</h5>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a class="text-white" style="text-decoration: none;" href="#">
+                                    聯絡我們
+                                </a>
+                            </li>
+                            <li>
+                                <a class="text-white" style="text-decoration: none;" href="#">
+                                    幫助中心
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-3 pt-5 d-xl-flex justify-content-end">
+                    <!-- 探教育版權、建議瀏覽器 -->
+                    <div>
+                        <div>
+                            <span class="fw-bold">探教育有限公司</span>
+                            <small> 版權所有&copy; 2023</small>
+                        </div>
+                        <small>
+                            TempEDU Co. All Rights Reserved.<br>
+                            建議最佳瀏覽器：Google Chrome
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CDN 引入 Javascript -->
+    <!-- 使用分離腳本，先放入 Popper (使用工具提示或是彈出提示框)，再放入 JavaScript 插件 -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"
+        integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
+        integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
